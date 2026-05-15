@@ -92,4 +92,6 @@ If `authenticated: false`, the QA session will auto-renew and retry once.
 
 ## QA user
 
-`qa@pacific.london` is provisioned as `role=viewer` in `staff_users`. It can navigate and read all admin pages but cannot mutate any data. All activity is auditable in `staff_sessions`.
+`qa@pacific.london` is provisioned in each portal's `qa_viewer_roles` table with read-only access. It can navigate and read all admin pages but cannot mutate any data. All session activity is auditable in `staff_sessions`.
+
+**`qa@pacific.london` is an email alias** routing to `ali@pacific.london`'s Exchange Online mailbox — it is not a separate licensed mailbox, shared mailbox, or AAD/Entra identity. The bridge never uses email for auth; authentication is entirely via the `PLAYWRIGHT_QA_SECRET` bearer token.
